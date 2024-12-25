@@ -87,6 +87,17 @@ class SeriesSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'title' => 'From',
+                'description' => '"From" is a horror-mystery series about people trapped in a town with terrifying creatures and dark secrets.',
+                'release_date' => '2022-02-20',  
+                'seasons' => 3, 
+                'episodes' => 30,  
+                'rating' => 9.3,
+                'genre_id' => 5, // Horror 
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
