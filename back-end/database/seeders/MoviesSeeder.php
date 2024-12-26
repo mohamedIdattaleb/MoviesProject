@@ -80,6 +80,16 @@ class MoviesSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+             [
+                'title' => 'The Matrix',
+                'description' => 'A hacker discovers the truth about his reality.',
+                'release_date' => '1999-03-31',
+                'duration' => 136,
+                'rating' => 8.7,
+                'genre_id' => 2, 
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
         ]);
     }
 }
