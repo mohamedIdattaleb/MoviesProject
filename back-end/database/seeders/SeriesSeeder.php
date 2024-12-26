@@ -18,7 +18,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 62,
                 'rating' => 9.5,
                 'genre_id' => 3, // Drama
-                'image_path' => 'images/series/breaking_bad.jpg',
+                'image_path' => '../public/images/series/breaking_bad.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -30,7 +30,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 236,
                 'rating' => 8.8,
                 'genre_id' => 2, // Comedy
-                'image_path' => 'images/series/friends.jpg',
+                'image_path' => '../public/images/series/friends.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -42,7 +42,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 34,
                 'rating' => 8.7,
                 'genre_id' => 3, // Sci-Fi
-                'image_path' => 'images/series/stranger_things.jpg',
+                'image_path' => '../public/images/series/stranger_things.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -54,7 +54,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 201,
                 'rating' => 8.9,
                 'genre_id' => 2, // Comedy
-                'image_path' => 'images/series/the_office.jpg',
+                'image_path' => '../public/images/series/the_office.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -66,7 +66,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 177,
                 'rating' => 8.1,
                 'genre_id' => 5, // Horror
-                'image_path' => 'images/series/the_walking_dead.jpg',
+                'image_path' => '../public/images/series/the_walking_dead.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -78,7 +78,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 60,
                 'rating' => 8.7,
                 'genre_id' => 3, // Drama
-                'image_path' => 'images/series/the_crown.jpg',
+                'image_path' => '../public/images/series/the_crown.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -90,7 +90,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 73,
                 'rating' => 9.3,
                 'genre_id' => 7, // Fantasy
-                'image_path' => 'images/series/game_of_thrones.jpg',
+                'image_path' => '../public/images/series/game_of_thrones.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -102,7 +102,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 30,
                 'rating' => 9.3,
                 'genre_id' => 5, // Horror
-                'image_path' => 'images/series/from.jpg',
+                'image_path' => '../public/images/series/from.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
