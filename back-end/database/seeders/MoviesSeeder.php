@@ -17,6 +17,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 143,
                 'rating' => 8.0,
                 'genre_id' => 1, // Action
+                'image_path' => 'images/movies/the_avengers.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -27,6 +28,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 100,
                 'rating' => 7.7,
                 'genre_id' => 2, // Comedy
+                'image_path' => 'images/movies/the_hangover.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -37,6 +39,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 148,
                 'rating' => 8.8,
                 'genre_id' => 3, // Sci-Fi
+                'image_path' => 'images/movies/inception.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -47,6 +50,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 169,
                 'rating' => 8.6,
                 'genre_id' => 3, // Sci-Fi
+                'image_path' => 'images/movies/interstellar.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -57,6 +61,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 112,
                 'rating' => 7.5,
                 'genre_id' => 5, // Horror
+                'image_path' => 'images/movies/the_conjuring.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -67,6 +72,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 123,
                 'rating' => 7.8,
                 'genre_id' => 6, // Romance
+                'image_path' => 'images/movies/the_notebook.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -77,16 +83,18 @@ class MoviesSeeder extends Seeder
                 'duration' => 152,
                 'rating' => 7.6,
                 'genre_id' => 7, // Fantasy
+                'image_path' => 'images/movies/harry_potter.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-             [
+            [
                 'title' => 'The Matrix',
                 'description' => 'A hacker discovers the truth about his reality.',
                 'release_date' => '1999-03-31',
                 'duration' => 136,
                 'rating' => 8.7,
-                'genre_id' => 2, 
+                'genre_id' => 2, // Sci-Fi
+                'image_path' => 'images/movies/the_matrix.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

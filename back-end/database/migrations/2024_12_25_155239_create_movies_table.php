@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('duration')->nullable();
             $table->decimal('rating', 3, 1)->nullable()->checkBetween(0, 10);
             $table->foreignId('genre_id')->nullable()->constrained('genres')->onDelete('set null');
+            $table->string('image_path')->nullable(); // Column for storing the image path
             $table->timestamps();
         });
     }

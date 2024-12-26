@@ -18,6 +18,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 62,
                 'rating' => 9.5,
                 'genre_id' => 3, // Drama
+                'image_path' => 'images/series/breaking_bad.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -29,6 +30,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 236,
                 'rating' => 8.8,
                 'genre_id' => 2, // Comedy
+                'image_path' => 'images/series/friends.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -40,6 +42,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 34,
                 'rating' => 8.7,
                 'genre_id' => 3, // Sci-Fi
+                'image_path' => 'images/series/stranger_things.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -51,6 +54,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 201,
                 'rating' => 8.9,
                 'genre_id' => 2, // Comedy
+                'image_path' => 'images/series/the_office.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -62,6 +66,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 177,
                 'rating' => 8.1,
                 'genre_id' => 5, // Horror
+                'image_path' => 'images/series/the_walking_dead.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -73,6 +78,7 @@ class SeriesSeeder extends Seeder
                 'episodes' => 60,
                 'rating' => 8.7,
                 'genre_id' => 3, // Drama
+                'image_path' => 'images/series/the_crown.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -84,17 +90,19 @@ class SeriesSeeder extends Seeder
                 'episodes' => 73,
                 'rating' => 9.3,
                 'genre_id' => 7, // Fantasy
+                'image_path' => 'images/series/game_of_thrones.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title' => 'From',
                 'description' => '"From" is a horror-mystery series about people trapped in a town with terrifying creatures and dark secrets.',
-                'release_date' => '2022-02-20',  
-                'seasons' => 3, 
-                'episodes' => 30,  
+                'release_date' => '2022-02-20',
+                'seasons' => 3,
+                'episodes' => 30,
                 'rating' => 9.3,
-                'genre_id' => 5, // Horror 
+                'genre_id' => 5, // Horror
+                'image_path' => 'images/series/from.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

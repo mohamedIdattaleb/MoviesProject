@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('seasons')->nullable();
             $table->integer('episodes')->nullable();
             $table->decimal('rating', 3, 1)->nullable()->checkBetween(0, 10); // Between 0 and 10
+            $table->string('image_path')->nullable(); // Column to store the image file path
             $table->foreignId('genre_id')->nullable()->constrained('genres')->onDelete('set null');
             $table->timestamps();
         });
