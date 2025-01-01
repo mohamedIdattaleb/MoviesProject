@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movies extends Model
 {
+<<<<<<< Updated upstream
     protected $fillable = [
         'title',
         'description',
@@ -28,4 +29,7 @@ class Movies extends Model
     {
         return $this->hasMany(WatchHistory::class);
     }
+=======
+    
+>>>>>>> Stashed changes
 }
