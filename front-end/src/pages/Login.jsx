@@ -4,7 +4,7 @@ function Login() {
     return (
         <>
             <div>
-                <h1>Movies App</h1>
+                <h1>Movies Star</h1>
                 <h6>Login to your account</h6>
                 <form>
                     <input type="text" placeholder="Username" />

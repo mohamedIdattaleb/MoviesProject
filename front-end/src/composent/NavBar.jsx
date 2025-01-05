@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 function NavBar() {
     return (
         <>
-        <h1>Movies App</h1>
+        <h1>Movies Star</h1>
         <div>
             <Link>Home</Link>
             <Link>Discover</Link>
