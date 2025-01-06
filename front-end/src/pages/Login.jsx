@@ -16,7 +16,7 @@ function Login() {
                         type="text" 
                         placeholder="Username" 
                         required 
-                    /><br />
+                    />
 
                     <label htmlFor="password">Password</label><br />
                     <input 
@@ -24,7 +24,7 @@ function Login() {
                         type="password" 
                         placeholder="Password" 
                         required 
-                    /><br />
+                    />
 
                     <Link to="/forgot-password" className="forgot-password-link">
                         Forgot Password?
