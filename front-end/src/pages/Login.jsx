@@ -10,7 +10,7 @@ function Login() {
                 <h1>Movies Star</h1>
                 <h3>Login to your account</h3>
                 <form>
-                    <label htmlFor="username">Username</label><br />
+                    <label htmlFor="username">Username</label>
                     <input 
                         id="username" 
                         type="text" 
@@ -18,7 +18,7 @@ function Login() {
                         required 
                     />
 
-                    <label htmlFor="password">Password</label><br />
+                    <label htmlFor="password">Password</label>
                     <input 
                         id="password" 
                         type="password" 
@@ -28,7 +28,7 @@ function Login() {
 
                     <Link to="/forgot-password" className="forgot-password-link">
                         Forgot Password?
-                    </Link><br />
+                    </Link>
 
                     <button type="submit">Login</button>
                 </form>
