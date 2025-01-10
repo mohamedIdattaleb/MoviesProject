@@ -32,8 +32,10 @@ function SignUp() {
     return (
         <div className="signup-container">
             <div className="signup">
-                <h1>Movies Star</h1>
-                <h3>Create an account</h3>
+                <div className='signup-header'>
+                    <h1>Movies Star</h1>
+                    <h3>Create an account</h3>
+                    </div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username">Username</label>
                     <input
@@ -65,6 +67,7 @@ function SignUp() {
                         placeholder="Password"
                         value={formData.password}
                         onChange={handleChange}
+                        minLength={8}
                         required
                     />
 
@@ -76,6 +79,7 @@ function SignUp() {
                         placeholder="Confirm Password"
                         value={formData.confirmPassword}
                         onChange={handleChange}
+                        minLength={8}
                         required
                     />
 

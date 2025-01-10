@@ -14,9 +14,6 @@
 
 body {
     font-family: "Jost", serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 * {
@@ -54,22 +51,24 @@ body {
 }
 
 .signup {
-    padding: 30px;
+    padding: 25px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     border: 1px solid rgba(255, 255, 255, 0.2);
     width: 400px;
-    min-height: 500px;
+    min-height: fit-content;
     backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.7);
     color: #fff;
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
     z-index: 2;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.5s ease ;
 }
-
+.signup-header{
+    padding-bottom: 25px;
+}
 .signup:hover {
     transform: scale(1.03);
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.6);
@@ -79,14 +78,14 @@ form {
     display: flex;
     flex-direction: column;
     animation: fadeInDown 1s ease-out;
+    gap: 5px;
+   
 }
 
 .signup h1 {
     font-weight: 700;
     font-size: 40px;
-    font-family: f;
     text-align: center;
-    margin-bottom: 10px;
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     color: #ff4b2b;
 }
@@ -95,7 +94,6 @@ form {
     font-weight: 400;
     font-size: 16px;
     text-align: center;
-    margin-bottom: 10px;
     color: rgba(255, 255, 255, 0.8);
     color: #d79d93;
 }
@@ -152,9 +150,8 @@ button:hover {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
     background: linear-gradient(90deg, #ff4b2b, #ff416c);
 }
-
 button:active {
-    background: #0af912;
+    background: #057d09;
     transform: scale(0.95); 
     box-shadow: 0px 0px 5px rgba(0, 255, 127, 0.7);
 }
@@ -180,10 +177,12 @@ span {
     font-size: 14px;
     margin-top: 20px;
     animation: fadeInDown 1s ease-out;
+
 }
 
 .login-link {
     font-weight: bold;
+    align-self: center;
 }
 
 .signup h1,
