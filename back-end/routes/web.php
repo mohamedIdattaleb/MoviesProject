@@ -41,3 +41,7 @@ Route::resource('watch_histories', WatchHistoryController::class);
 
 // User routes
 Route::resource('users', UsersController::class);
+
+Route::post('/register', [UsersController::class, 'register']);
+Route::post('/login', [UsersController::class, 'login']);
+Route::post('/logout', [UsersController::class, 'logout'])->middleware('auth:sanctum');
