@@ -24,6 +24,8 @@ use App\Http\Controllers\UsersController;
 Route::get('movies', [MoviesController::class, 'index']);
 Route::get('series', [SeriesController::class, 'index']);
 Route::get('genres', [GenresController::class, 'index']);
+Route::post('register', [UsersController::class, 'register']);
+Route::post('login', [UsersController::class, 'login']);
 
 // Authenticated routes (example using middleware)
 Route::middleware('auth:sanctum')->group(function () {

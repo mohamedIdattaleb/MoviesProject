@@ -1,31 +1,57 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
-
 
 function SignUp() {
     const [formData, setFormData] = useState({
-        username: '',
+        user_name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
     });
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
+        setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (formData.password === formData.confirmPassword) {
-            // Call API or handle form submission
-            console.log('Form submitted', formData);
-        } else {
-            console.log('Passwords do not match');
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+
+        setIsLoading(true);
+        try {
+            const response = await fetch('http://localhost:8000/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_name: formData.user_name,
+                    email: formData.email,
+                    password: formData.password,
+                    password_confirmation: formData.confirmPassword,
+                }),
+            });
+
+            const data = await response.json();
+            console.log('Response:', response);
+            console.log('Data:', data);
+
+            if (response.ok) {
+                navigate('/');
+            } else {
+                setError(data.errors ? Object.values(data.errors).join(', ') : data.message);
+            }
+        } catch (err) {
+            console.error('Error:', err);
+            setError('An error occurred. Please try again.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -35,15 +61,15 @@ function SignUp() {
                 <div className='signup-header'>
                     <h1>Movies Star</h1>
                     <h3>Create an account</h3>
-                    </div>
+                </div>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="user_name">Username</label>
                     <input
-                        id="username"
-                        name="username"
+                        id="user_name"
+                        name="user_name"
                         type="text"
                         placeholder="Username"
-                        value={formData.username}
+                        value={formData.user_name}
                         onChange={handleChange}
                         required
                     />
@@ -83,7 +109,11 @@ function SignUp() {
                         required
                     />
 
-                    <button type="submit">Sign Up</button>
+                    {error && <p className="error-message">{error}</p>}
+
+                    <button type="submit" disabled={isLoading}>
+                        {isLoading ? 'Signing Up...' : 'Sign Up'}
+                    </button>
                 </form>
 
                 <span>
