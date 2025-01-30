@@ -14,14 +14,16 @@ function Login() {
                 <form>
                     <label htmlFor="username">Username</label>
                     <input
+                        className='login-input'
                         id="username"
                         type="text"
                         placeholder="Username"
                         required
                     />
 
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password" >Password</label>
                     <input
+                        className='login-input'
                         id="password"
                         type="password"
                         placeholder="Password"
@@ -33,7 +35,7 @@ function Login() {
                         Forgot Password?
                     </Link>
 
-                    <button type="submit">Login</button>
+                    <button className='submit' type="submit">Login</button>
                 </form>
                 <span>
                     Don't have an account?

@@ -114,7 +114,7 @@ label:hover {
     transform: translateX(2px);
 }
 
-input {
+.login-input {
     background: rgba(255, 255, 255, 0.2);
     height: 40px;
     border-radius: 20px;
@@ -127,14 +127,14 @@ input {
     margin-bottom: 20px;
 }
 
-input:focus {
+.login-input:focus {
     background: rgba(40, 24, 24, 0.5);
     border: 1px solid #ffcc00;
     box-shadow: 0px 0px 10px rgba(255, 204, 0, 0.7); 
     transform: scale(1.02);
 }
 
-button {
+.submit {
     background: linear-gradient(90deg, #ff416c, #ff4b2b);
     height: 45px;
     border-radius: 25px;
@@ -147,14 +147,14 @@ button {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-button:hover {
+.submit:hover {
     transform: scale(1.03);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
     background: linear-gradient(90deg, #ff4b2b, #ff416c);
 }
 
 
-button:active {
+.submit:active {
     background: #057d09;
     transform: scale(0.95); 
     box-shadow: 0px 0px 5px rgba(0, 255, 127, 0.7);
@@ -181,7 +181,6 @@ span {
     font-size: 14px;
     margin-top: 20px;
     animation: fadeInDown 1s ease-out;
-   
 }
 
 .signup-link {

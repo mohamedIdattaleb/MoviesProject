@@ -35,10 +35,11 @@ function SignUp() {
                 <div className='signup-header'>
                     <h1>Movies Star</h1>
                     <h3>Create an account</h3>
-                    </div>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username">Username</label>
                     <input
+                        className='sign-input'
                         id="username"
                         name="username"
                         type="text"
@@ -50,6 +51,7 @@ function SignUp() {
 
                     <label htmlFor="email">Email</label>
                     <input
+                        className='sign-input'
                         id="email"
                         name="email"
                         type="email"
@@ -61,6 +63,7 @@ function SignUp() {
 
                     <label htmlFor="password">Password</label>
                     <input
+                        className='sign-input'
                         id="password"
                         name="password"
                         type="password"
@@ -73,6 +76,7 @@ function SignUp() {
 
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input
+                        className='sign-input'
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
@@ -83,7 +87,7 @@ function SignUp() {
                         required
                     />
 
-                    <button type="submit">Sign Up</button>
+                    <button className='submit' type="submit">Sign Up</button>
                 </form>
 
                 <span>
