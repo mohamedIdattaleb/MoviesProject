@@ -29,10 +29,10 @@ class UsersController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'user_name' => 'required|string|max:255',
+            'user_name' => 'required|string|min:3|max:255|regex:/^[a-zA-Z0-9_\-]+$/',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required'
+            'password_confirmation' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -73,7 +73,7 @@ class UsersController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'user_name' => 'sometimes|required|string|max:255',
+            'user_name' => 'sometimes|required|string|min:3|max:255|regex:/^[a-zA-Z0-9_\-]+$/',
             'email' => 'sometimes|required|string|email|unique:users,email,' . $id,
             'password' => 'sometimes|required|string|min:8|confirmed',
         ]);

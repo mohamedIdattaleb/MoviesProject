@@ -9,7 +9,7 @@ function SignUp() {
         password: '',
         confirmPassword: '',
     });
-    const [error, setError] = useState('');
+    const [error, setError] = useState(''); // Error state for form submission
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -27,7 +27,7 @@ function SignUp() {
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/api/register', {
+            const response = await fetch('http://localhost:8000/api/v1/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -67,6 +67,7 @@ function SignUp() {
                     <input
                         id="user_name"
                         name="user_name"
+                        className='sign-input'
                         type="text"
                         placeholder="Username"
                         value={formData.user_name}
@@ -76,6 +77,7 @@ function SignUp() {
 
                     <label htmlFor="email">Email</label>
                     <input
+                        className='sign-input'
                         id="email"
                         name="email"
                         type="email"
@@ -87,6 +89,7 @@ function SignUp() {
 
                     <label htmlFor="password">Password</label>
                     <input
+                        className='sign-input'
                         id="password"
                         name="password"
                         type="password"
@@ -99,6 +102,7 @@ function SignUp() {
 
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input
+                        className='sign-input'
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
@@ -111,9 +115,10 @@ function SignUp() {
 
                     {error && <p className="error-message">{error}</p>}
 
-                    <button type="submit" disabled={isLoading}>
+                    <button className='submit' type="submit" disabled={isLoading}>
                         {isLoading ? 'Signing Up...' : 'Sign Up'}
                     </button>
+
                 </form>
 
                 <span>

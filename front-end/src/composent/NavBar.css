@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 10px 30px;
+}
+
+h1 {
+    color: red;
+    font-size: 20px;
+    text-align: start;
+
+}
+
+
+
+.end {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.log-out {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.log-out:hover {
+    background-color: rgb(229, 20, 20);
+
+}
+
+/* حاوية شريط البحث */
+.search {
+    display: flex;
+    /* لتوزيع الأيقونة والحقل في صف واحد */
+    align-items: center;
+    /* لمحاذاة العناصر عموديًا */
+    height: 40px;
+    /* ارتفاع الحاوية */
+    padding: 5px 15px;
+    background-color: white;
+    /* لون خلفية شريط البحث */
+    border-radius: 30px;
+    /* زوايا مستديرة */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+    /* ظل */
+    width: 100px;
+    /* العرض الابتدائي */
+    transition: all 0.5s ease;
+    /* تأثير سلس عند التوسع */
+    overflow: hidden;
+    /* منع تجاوز المحتوى */
+}
+
+/* تأثير التوسع عند تمرير الفأرة */
+.search:hover {
+    width: 200px;
+    /* التوسع عند التمرير */
+}
+
+/* تأثير التوسع عند التركيز */
+.search:focus-within {
+    width: 250px;
+    /* التوسع عند التركيز */
+}
+
+/* تصميم الأيقونة */
+.icon {
+    color: rgb(4, 193, 4);
+    /* لون الأيقونة الافتراضي */
+    font-size: 20px;
+    /* حجم الأيقونة */
+    transition: color 0.5s ease;
+    /* تأثير سلس عند تغيير اللون */
+}
+
+/* تغيير لون الأيقونة عند التركيز */
+.search:focus-within .icon {
+    color: rgb(0, 123, 255);
+    /* تغيير اللون عند التركيز */
+}
+
+/* حقل الإدخال */
+.nav-input {
+    flex: 1;
+    /* يجعل الإدخال يتمدد لملء المساحة المتاحة */
+    border: none;
+    /* بدون حدود */
+    outline: none;
+    /* بدون إطار */
+    font-size: 14px;
+    /* حجم الخط */
+    font-family: 'Kanit', sans-serif;
+    /* الخط المستخدم */
+    color: black;
+    /* لون النص */
+    background: transparent;
+    /* خلفية شفافة */
+    /* opacity: 0; */
+    /* الحقل غير ظاهر بشكل افتراضي */
+    transition: all 0.5s ease;
+    /* تأثير سلس عند الإظهار */
+}
+
+/* إظهار الحقل عند التمرير أو التركيز */
+.search:hover .nav-input,
+.search:focus-within .nav-input {
+
+    width: 100%;
+    /* تمدد الحقل داخل الحاوية */
+}
+
+/* تصميم النص التوضيحي (Placeholder) */
+.nav-input::placeholder {
+    color: gray;
+    /* لون النص التوضيحي */
+    font-style: italic;
+    /* ميل النص */
+    transition: color 0.3s ease;
+    /* تأثير سلس عند تغيير اللون */
+}
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+}
+
+.links a{
+    text-decoration: none;
+    color: white;
+    font-family: "Jost", serif;
+    transition: all 0.3s ease;
+}
+.links a:hover{
+    transform: scale(1.05);
+}
+.links .active{
+    font-weight: bold;
+}
+.icon-log{
+    align-self: center;
+    font-size: 15px;
+}
+.log-out:hover{
+    gap: 15px;
+}

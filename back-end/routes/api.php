@@ -21,19 +21,23 @@ use App\Http\Controllers\UsersController;
 */
 
 // Public routes
-Route::get('movies', [MoviesController::class, 'index']);
-Route::get('series', [SeriesController::class, 'index']);
-Route::get('genres', [GenresController::class, 'index']);
-Route::post('register', [UsersController::class, 'register']);
-Route::post('login', [UsersController::class, 'login']);
+Route::prefix('v1')->group(function () {
+    Route::get('movies', [MoviesController::class, 'index']);
+    Route::get('series', [SeriesController::class, 'index']);
+    Route::get('genres', [GenresController::class, 'index']);
+    Route::post('register', [UsersController::class, 'register']);
+    Route::post('login', [UsersController::class, 'login']);
+});
 
-// Authenticated routes (example using middleware)
-Route::middleware('auth:sanctum')->group(function () {
+// Authenticated routes
+Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::apiResource('movies', MoviesController::class)->except(['index']);
     Route::apiResource('series', SeriesController::class)->except(['index']);
     Route::apiResource('genres', GenresController::class)->except(['index']);
     Route::apiResource('favorites', FavoritesController::class);
     Route::apiResource('watch_histories', WatchHistoryController::class);
     Route::apiResource('users', UsersController::class);
-});
 
+    // Logout route
+    Route::post('logout', [UsersController::class, 'logout']);
+});

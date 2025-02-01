@@ -15,10 +15,17 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Validation côté client
+        if (!credentials.email || !credentials.password) {
+            setError('Please fill in all fields.');
+            return;
+        }
+
         setLoading(true); // Show loading state
         setError(''); // Reset error state before the new attempt
         try {
-            const response = await fetch('http://localhost:8000/api/login', {
+            const response = await fetch('http://localhost:8000/api/v1/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(credentials),
@@ -26,16 +33,20 @@ function Login() {
             const data = await response.json();
 
             if (response.ok) {
-                // Stocker le token dans le localStorage
+                // Stocker le token et les informations utilisateur dans le localStorage
                 localStorage.setItem('token', data.token);
-                navigate('/dashboard'); // Rediriger vers le tableau de bord
+                localStorage.setItem('user', JSON.stringify(data.user)); // Stocker les informations utilisateur
+                navigate('/register'); // Rediriger vers le tableau de bord
             } else {
-                console.log(data);
-                setError(data.message || 'Identifiants invalides');
+                if (data.errors) {
+                    setError(Object.values(data.errors).join(', '));
+                } else {
+                    setError(data.message || 'Identifiants invalides');
+                }
             }
         } catch (err) {
             console.error(err);
-            setError('Une erreur s\'est produite. Veuillez réessayer.');
+            setError('An error occurred. Please try again.');
         } finally {
             setLoading(false); // Hide loading state once the request is complete
         }
@@ -51,6 +62,7 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>
                     <input
+                        className='login-input'
                         id="email"
                         name="email"
                         type="email"
@@ -62,6 +74,7 @@ function Login() {
 
                     <label htmlFor="password">Password</label>
                     <input
+                        className='login-input'
                         id="password"
                         name="password"
                         type="password"
@@ -73,7 +86,7 @@ function Login() {
 
                     {error && <p className="error-message">{error}</p>}
 
-                    <button type="submit" disabled={loading}>
+                    <button className='submit' type="submit" disabled={loading}>
                         {loading ? 'Loading...' : 'Login'}
                     </button>
                 </form>
