@@ -16,8 +16,6 @@ h1 {
 
 }
 
-
-
 .end {
     display: flex;
     align-items: center;
@@ -27,6 +25,7 @@ h1 {
 .log-out {
     display: flex;
     justify-content: center;
+    height: 40px;
     align-items: center;
     gap: 5px;
     background-color: red;
@@ -48,119 +47,97 @@ h1 {
 
 }
 
-/* حاوية شريط البحث */
+
 .search {
     display: flex;
-    /* لتوزيع الأيقونة والحقل في صف واحد */
     align-items: center;
-    /* لمحاذاة العناصر عموديًا */
     height: 40px;
-    /* ارتفاع الحاوية */
+    border-radius: 5px;
     padding: 5px 15px;
     background-color: white;
-    /* لون خلفية شريط البحث */
-    border-radius: 30px;
-    /* زوايا مستديرة */
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
-    /* ظل */
     width: 100px;
-    /* العرض الابتدائي */
     transition: all 0.5s ease;
-    /* تأثير سلس عند التوسع */
     overflow: hidden;
-    /* منع تجاوز المحتوى */
 }
 
-/* تأثير التوسع عند تمرير الفأرة */
 .search:hover {
     width: 200px;
-    /* التوسع عند التمرير */
 }
 
-/* تأثير التوسع عند التركيز */
 .search:focus-within {
     width: 250px;
-    /* التوسع عند التركيز */
 }
 
-/* تصميم الأيقونة */
 .icon {
     color: rgb(4, 193, 4);
-    /* لون الأيقونة الافتراضي */
     font-size: 20px;
-    /* حجم الأيقونة */
     transition: color 0.5s ease;
-    /* تأثير سلس عند تغيير اللون */
 }
 
-/* تغيير لون الأيقونة عند التركيز */
 .search:focus-within .icon {
     color: rgb(0, 123, 255);
-    /* تغيير اللون عند التركيز */
 }
 
-/* حقل الإدخال */
 .nav-input {
     flex: 1;
-    /* يجعل الإدخال يتمدد لملء المساحة المتاحة */
     border: none;
-    /* بدون حدود */
     outline: none;
-    /* بدون إطار */
     font-size: 14px;
-    /* حجم الخط */
     font-family: 'Kanit', sans-serif;
-    /* الخط المستخدم */
     color: black;
-    /* لون النص */
     background: transparent;
-    /* خلفية شفافة */
-    /* opacity: 0; */
-    /* الحقل غير ظاهر بشكل افتراضي */
     transition: all 0.5s ease;
-    /* تأثير سلس عند الإظهار */
 }
 
-/* إظهار الحقل عند التمرير أو التركيز */
 .search:hover .nav-input,
 .search:focus-within .nav-input {
-
     width: 100%;
-    /* تمدد الحقل داخل الحاوية */
 }
 
-/* تصميم النص التوضيحي (Placeholder) */
 .nav-input::placeholder {
     color: gray;
-    /* لون النص التوضيحي */
     font-style: italic;
-    /* ميل النص */
     transition: color 0.3s ease;
-    /* تأثير سلس عند تغيير اللون */
 }
+
 .links {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 30%;
 }
-
-.links a{
+.links a {
     text-decoration: none;
     color: white;
+    position: relative;
+    letter-spacing: 1px;
     font-family: "Jost", serif;
+
+}
+.links a::after{
+    content: '';
+    position: absolute;
+    background-color: white;
+    height: 2px;
+    width: 0;
+    left: 0;
+    bottom: -5px;
     transition: all 0.3s ease;
 }
-.links a:hover{
-    transform: scale(1.05);
+.links a:hover::after{
+    width: 100%;
 }
-.links .active{
+
+.links .active {
     font-weight: bold;
 }
-.icon-log{
+
+.icon-log {
     align-self: center;
     font-size: 15px;
 }
-.log-out:hover{
+
+.log-out:hover {
     gap: 15px;
 }

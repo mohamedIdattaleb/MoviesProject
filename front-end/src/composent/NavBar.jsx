@@ -6,7 +6,7 @@ function NavBar() {
         <div className="nav-container">
             <h1>Movies Star</h1>
             <div className="links">
-                <Link className="active" to="/">Home</Link>
+                <Link className="active" to="/Home">Home</Link>
                 <Link to="/discover">Discover</Link>
                 <Link to="/movie-release">Movie Release</Link>
                 <Link to="/forum">Forum</Link>

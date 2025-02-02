@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Login.css';
 
 function Login() {
@@ -25,18 +26,14 @@ function Login() {
         setLoading(true); // Show loading state
         setError(''); // Reset error state before the new attempt
         try {
-            const response = await fetch('http://localhost:8000/api/v1/login', {
-                method: 'POST',
+            const data = await axios.post('http://localhost:8000/api/v1/login', credentials, {
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(credentials),
             });
-            const data = await response.json();
-
-            if (response.ok) {
-                // Stocker le token et les informations utilisateur dans le localStorage
+    
+            if (data.status === 200) {
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user)); // Stocker les informations utilisateur
-                navigate('/register'); // Rediriger vers le tableau de bord
+                localStorage.setItem('user', JSON.stringify(data.user));
+                navigate('/Home');
             } else {
                 if (data.errors) {
                     setError(Object.values(data.errors).join(', '));
@@ -91,7 +88,7 @@ function Login() {
                     </button>
                 </form>
                 <span>
-                    Don’t have an account?{' '}
+                    Don't have an account?{' '}
                     <Link to="/signup" className="signup-link">Sign Up</Link>
                 </span>
             </div>
