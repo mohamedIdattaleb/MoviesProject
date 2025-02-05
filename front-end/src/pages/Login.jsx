@@ -26,26 +26,28 @@ function Login() {
         setLoading(true); // Show loading state
         setError(''); // Reset error state before the new attempt
         try {
-            const data = await axios.post('http://localhost:8000/api/v1/login', credentials, {
+            const resp = await axios.post('http://localhost:8000/api/v1/login', credentials, {
                 headers: { 'Content-Type': 'application/json' },
             });
-    
-            if (data.status === 200) {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+        
+            console.log(resp.data); // Log the response data
+        
+            if (resp.status === 200) {
+                localStorage.setItem('token', resp.data.token);
+                localStorage.setItem('username', resp.data.user.user_name);
                 navigate('/Home');
             } else {
-                if (data.errors) {
-                    setError(Object.values(data.errors).join(', '));
+                if (resp.data.errors) {
+                    setError(Object.values(resp.data.errors).join(', '));
                 } else {
-                    setError(data.message || 'Identifiants invalides');
+                    setError(resp.data.message || 'Identifiants invalides');
                 }
             }
         } catch (err) {
             console.error(err);
             setError('An error occurred. Please try again.');
         } finally {
-            setLoading(false); // Hide loading state once the request is complete
+            setLoading(false);
         }
     };
 
@@ -53,7 +55,7 @@ function Login() {
         <div className='login-container'>
             <div className='login'>
                 <div className='login-header'>
-                    <h1>Movies Star</h1>
+                    <h1 className='head'>Movies Star</h1>
                     <h3>Login to your account</h3>
                 </div>
                 <form onSubmit={handleSubmit}>

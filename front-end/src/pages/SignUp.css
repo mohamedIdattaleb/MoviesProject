@@ -81,7 +81,7 @@ form {
     gap: 8px;
 }
 
-.signup h1 {
+.signup .head {
     font-weight: 700;
     font-size: 40px;
     text-align: center;

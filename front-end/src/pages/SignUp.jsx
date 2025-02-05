@@ -59,7 +59,7 @@ function SignUp() {
         <div className="signup-container">
             <div className="signup">
                 <div className='signup-header'>
-                    <h1>Movies Star</h1>
+                    <h1 className='head'>Movies Star</h1>
                     <h3>Create an account</h3>
                 </div>
                 <form onSubmit={handleSubmit}>

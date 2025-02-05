@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('user_name')->unique(); // Utilisation de "name" au lieu de "user_name"
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'user'])->default('user'); // Ajout de la colonne "role"
+            $table->enum('role', ['admin', 'user'])->default('user'); // Ensure default role is 'user'
             $table->timestamp('email_verified_at')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();

@@ -8,7 +8,9 @@ body {
     background-repeat: no-repeat;
     position: relative; /* Needed for overlay */
 }
-
+.container {
+    padding: 5px 20px;
+}
 /* Dark overlay */
 body::before {
     content: "";
@@ -22,7 +24,13 @@ body::before {
 }
 
 *{
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+.hello{
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
 }
