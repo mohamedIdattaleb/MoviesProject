@@ -5,48 +5,57 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 class UsersController extends Controller
 {
+    /**
+     * Les champs qui peuvent être retournés en toute sécurité
+     */
+    protected $safeFields = ['id', 'user_name', 'email', 'role', 'created_at', 'updated_at'];
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Retrieve all users
-        $users = User::all();
+        $users = User::select($this->safeFields)->get();
         return response()->json($users);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Register a new user.
      */
-    public function create()
+    public function register(Request $request)
     {
-        // Typically for web apps, not needed in APIs
-        return view('users.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // Validate the request data
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users,email',
+        $validator = Validator::make($request->all(), [
+            'user_name' => 'required|string|min:3|max:255|regex:/^[a-zA-Z0-9_\-]+$/',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
         ]);
 
-        // Create a new user
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Erreur de validation',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'user_name' => $request->user_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'user',
         ]);
 
-        return response()->json(['message' => 'User created successfully!', 'user' => $user], 201);
+        // Ne retourner que les champs sécurisés
+        $safeUser = $user->only($this->safeFields);
+
+        return response()->json([
+            'message' => 'Utilisateur enregistré avec succès',
+            'user' => $safeUser,
+        ], 201);
     }
 
     /**
@@ -54,19 +63,8 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        // Retrieve a specific user by ID
-        $user = User::findOrFail($id);
+        $user = User::select($this->safeFields)->findOrFail($id);
         return response()->json($user);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        // Typically for web apps, not needed in APIs
-        $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
     }
 
     /**
@@ -74,24 +72,67 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Validate the request data
-        $validated = $request->validate([
-            'name' => 'sometimes|required|string|max:255',
+        $validator = Validator::make($request->all(), [
+            'user_name' => 'sometimes|required|string|min:3|max:255|regex:/^[a-zA-Z0-9_\-]+$/',
             'email' => 'sometimes|required|string|email|unique:users,email,' . $id,
             'password' => 'sometimes|required|string|min:8|confirmed',
         ]);
 
-        // Find the user
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Erreur de validation',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
         $user = User::findOrFail($id);
 
-        // Update the user details
-        $user->update([
-            'name' => $validated['name'] ?? $user->name,
-            'email' => $validated['email'] ?? $user->email,
-            'password' => isset($validated['password']) ? Hash::make($validated['password']) : $user->password,
+        $updateData = array_filter([
+            'user_name' => $request->user_name,
+            'email' => $request->email,
+            'password' => $request->password ? Hash::make($request->password) : null,
         ]);
 
-        return response()->json(['message' => 'User updated successfully!', 'user' => $user]);
+        $user->update($updateData);
+
+        return response()->json([
+            'message' => 'Utilisateur mis à jour avec succès',
+            'user' => $user->only($this->safeFields),
+        ]);
+    }
+
+    /**
+     * Login user and create token
+     */
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Erreur de validation',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'Identifiants invalides',
+            ], 401);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Connexion réussie',
+            'user' => $user->only($this->safeFields),
+            'token' => $token,
+        ]);
     }
 
     /**
@@ -99,62 +140,11 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        // Find the user
         $user = User::findOrFail($id);
-
-        // Delete the user
         $user->delete();
 
-        return response()->json(['message' => 'User deleted successfully!']);
-    }
-    public function register(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-        ]);
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
-            'message' => 'User registered successfully!',
-            'user' => $user,
-            'token' => $token,
-        ], 201);
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+            'message' => 'Utilisateur supprimé avec succès'
         ]);
-
-        if (!Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
-        }
-
-        $user = Auth::user();
-        $token = $user->createToken('token-name')->plainTextToken;
-
-        return response()->json([
-            'message' => 'Login successful!',
-            'user' => $user,
-            'token' => $token,
-        ]);
-    }
-
-    public function logout(Request $request)
-    {
-        $request->user()->tokens()->delete();
-
-        return response()->json(['message' => 'User logged out successfully']);
     }
 }
