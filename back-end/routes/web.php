@@ -20,9 +20,7 @@ use App\Http\Controllers\UsersController;
 */
 
 // Home route
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 // Movie routes
 Route::resource('movies', MoviesController::class);
