@@ -50,7 +50,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 169,
                 'rating' => 8.6,
                 'genre_id' => 3, // Sci-Fi
-                'image_path' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK6tdN2LCV5E1ktnQu82L6m4JX8kP4UwnLJQ&s',
+                'image_path' => 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
