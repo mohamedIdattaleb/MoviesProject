@@ -6,7 +6,7 @@ import './Login.css';
 function Login() {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false); // Loading state for button
+    const [loading, setLoading] = useState(false); 
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -17,20 +17,20 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validation côté client
+        
         if (!credentials.email || !credentials.password) {
             setError('Please fill in all fields.');
             return;
         }
 
-        setLoading(true); // Show loading state
-        setError(''); // Reset error state before the new attempt
+        setLoading(true);
+        setError(''); 
         try {
             const resp = await axios.post('http://localhost:8000/api/v1/login', credentials, {
                 headers: { 'Content-Type': 'application/json' },
             });
         
-            console.log(resp.data); // Log the response data
+            console.log(resp.data);
         
             if (resp.status === 200) {
                 localStorage.setItem('token', resp.data.token);
