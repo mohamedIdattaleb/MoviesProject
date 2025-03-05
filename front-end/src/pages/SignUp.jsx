@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './SignUp.css';
 
 function SignUp() {
@@ -27,33 +28,23 @@ function SignUp() {
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/api/v1/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    user_name: formData.user_name,
-                    email: formData.email,
-                    password: formData.password,
-                    password_confirmation: formData.confirmPassword,
-                }),
+            const { data } = await axios.post('http://localhost:8000/api/v1/register', {
+                user_name: formData.user_name,
+                email: formData.email,
+                password: formData.password,
+                password_confirmation: formData.confirmPassword,
             });
 
-            const data = await response.json();
-            console.log('Response:', response);
-            console.log('Data:', data);
-
-            if (response.ok) {
-                navigate('/');
-            } else {
-                setError(data.errors ? Object.values(data.errors).join(', ') : data.message);
-            }
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('username', data.user.user_name);
+            navigate('/');
         } catch (err) {
-            console.error('Error:', err);
-            setError('An error occurred. Please try again.');
+            setError(err.response?.data?.message || 'An error occurred. Please try again.');
         } finally {
             setIsLoading(false);
         }
     };
+
 
     return (
         <div className="signup-container">
