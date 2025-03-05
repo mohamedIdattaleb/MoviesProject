@@ -63,15 +63,14 @@ function Home() {
             ) : (
                 <motion.div className="slider" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
                     {movies.map((movie, index) => (
-                        <motion.img 
-                            key={index} 
-                            src={movie.image_path} 
-                            alt={movie.title} 
-                            whileHover={{ scale: 1.05 }} 
-                            className="movie-image"
-                        />
+                        <motion.div key={index} className="movie-card" whileHover={{ scale: 1.05 }}>
+                            <img src={movie.image_path} alt={movie.title} />
+                            <div className="title">{movie.title}</div>
+                            <button className="watch-btn">Watch Now</button>
+                        </motion.div>
                     ))}
                 </motion.div>
+
             )}
         </div>
     );

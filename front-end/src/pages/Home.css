@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
-
+/* Container principal du body */
 body {
     font-family: "Jost", sans-serif;
     background-image: url(/src/images/background.jpg);
@@ -11,7 +10,7 @@ body {
     position: relative;
 }
 
-/* Dark overlay for background */
+/* Dark overlay pour l'arrière-plan */
 body::before {
     content: "";
     position: absolute;
@@ -25,6 +24,9 @@ body::before {
 
 .container {
     padding: 10px 20px;
+    max-width: 1200px;
+    /* Vous pouvez ajuster la largeur selon la disposition */
+    margin: 0 auto;
 }
 
 .hello {
@@ -34,83 +36,101 @@ body::before {
     margin-bottom: 10px;
     width: fit-content;
     padding-right: 5px;
-    border-right: 3px solid white; /* Simulates a blinking cursor */
+    border-right: 3px solid white;
+    /* Simule un curseur clignotant */
     overflow: hidden;
     white-space: nowrap;
     animation: cursor 0.7s step-end infinite alternate;
 }
+
 @keyframes cursor {
-    50% { border-color: transparent; }
+    50% {
+        border-color: transparent;
+    }
 }
 
-/* Slider Container */
+/* Conteneur du slider */
 .slider {
     position: relative;
-    max-width: 800px;
-    height: fit-content;
-    margin: 0 auto;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* Grid responsif pour les images */
+    gap: 20px;
+    /* Espacement entre les images */
+    margin-top: 20px;
+    padding: 10px;
+    justify-items: center;
 }
 
-/* Images should be the same size */
-.sliders {
-    display: flex;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    border-radius: 15px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.sliders::-webkit-scrollbar {
-    display: none;
-}
-
-.sliders div {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
+/* Style des cartes des films */
+.movie-card {
     position: relative;
-}
-
-/* Image Styling */
-.sliders img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
+    max-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Title Overlay */
-.sliders .title {
+.movie-card:hover {
+    transform: scale(1.05);
+    /* Zoom léger au survol */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    /* Ombre plus grande au survol */
+}
+
+/* Image du film */
+.movie-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+/* Effet de survol : image devient plus claire */
+.movie-card:hover img {
+    opacity: 0.9;
+}
+
+/* Titre du film au bas de la carte */
+.movie-card .title {
     position: absolute;
-    bottom: 25px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    color: white;
-    padding: 10px 15px;
     font-size: 1.2rem;
+    color: white;
     font-weight: bold;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
 }
-.sliders .watch{
+
+/* Bouton Watch Now */
+.movie-card .watch-btn {
     position: absolute;
     bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 5px 10px;
-    background-color: rgba(255, 0, 0, 0.856);
+    padding: 10px 20px;
+    background-color: rgba(255, 0, 0, 0.75);
     border: none;
-    border-radius: 5px 10px;
-    color: #fff;
+    border-radius: 5px;
+    color: white;
     font-family: "Jost", sans-serif;
-    transition: all ease 0.5s;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.sliders .watch:hover{
+
+.movie-card .watch-btn:hover {
     background-color: red;
 }
-/* Slider Navigation */
+
+/* Option de pagination pour le slider (si vous en avez besoin) */
 .slider-nav {
     display: flex;
     column-gap: 0.5rem;
