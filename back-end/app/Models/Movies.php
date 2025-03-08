@@ -30,9 +30,5 @@ class Movies extends Model
     {
         return $this->hasMany(Favorites::class);
     }
-    public function getImagePathAttribute($value)
-    {
-        return url('images/movies/' . basename($value));
-    }
 
 }
