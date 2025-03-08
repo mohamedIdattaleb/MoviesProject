@@ -7,9 +7,10 @@ function NavBar() {
             <h1 className="head">Movies Star</h1>
             <div className="links">
                 <Link className="active" to="/Home">Home</Link>
-                <Link to="/discover">Discover</Link>
-                <Link to="/movie-release">Movie Release</Link>
-                <Link to="/forum">Forum</Link>
+                <Link to="/Movies">Movies</Link>
+                <Link to="/Siries">Siries</Link>
+                <Link to="/Watch">Watch History</Link>
+                <Link to="/Favorites">Favorites</Link>
                 <Link to="/about">About</Link>
             </div>
             <div className="end">
