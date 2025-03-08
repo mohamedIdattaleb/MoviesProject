@@ -1,11 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import NavBar from "../composent/NavBar";
-import axios from "axios";
-import { motion, AnimatePresence } from "framer-motion";
 import "./Home.css";
-
-const API_URL = "http://localhost:8000/api/v1/movies";
-const SLIDER_INTERVAL = 5000; // Intervalle de 5 secondes
+import axios from "axios";
 
 function Home() {
     const [name, setName] = useState("");
@@ -94,36 +90,22 @@ function Home() {
                             <p className="slider-description">{movies[currentIndex].description}</p>
                             <button className="slider-watch-btn">Watch Now</button>
                         </div>
-                    </motion.div>
-                </AnimatePresence>
-
-                {/* Boutons de navigation */}
-                <button className="slider-btn prev" onClick={goToPrevious} aria-label="Précédent">❮</button>
-                <button className="slider-btn next" onClick={goToNext} aria-label="Suivant">❯</button>
-
-                {/* Indicateurs de pagination */}
-                <div className="slider-dots">
-                    {movies.map((_, index) => (
-                        <span 
-                            key={index} 
-                            className={index === currentIndex ? "active" : ""}
-                            onClick={() => setCurrentIndex(index)}
-                            aria-label={`Aller à l'image ${index + 1}`}
-                        ></span>
-                    ))}
-                </div>
-            </div>
-
-            {/* Liste des films */}
-            <div className="movie-grid">
-                {movies.map((movie, index) => (
-                    <motion.div key={index} className="movie-card" whileHover={{ scale: 1.05 }}>
-                        <img src={movie.image_path} alt={movie.title} />
-                        <div className="title">{movie.title}</div>
-                        <button className="watch-btn">Watch Now</button>
-                    </motion.div>
-                ))}
-            </div>
+                        <div className="slider-nav">
+                            {[...Array(5)].map((_, index) => (
+                                <a
+                                    key={index}
+                                    href={`#slide-${index + 1}`}
+                                    className={activeIndex === index ? "active" : ""}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setActiveIndex(index);
+                                    }}
+                                ></a>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
     );
 }
