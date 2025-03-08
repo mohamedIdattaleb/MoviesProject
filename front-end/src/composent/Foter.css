@@ -1,26 +1,77 @@
-/* Foter.css */
-
 .footer {
-    background-color: #333;
+    background-color: #111;
     color: white;
-    text-align: center;
-    padding: 5px 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    padding: 20px 0;
+    font-family: "Jost", sans-serif;
+    margin-top: 40px;
 }
 
-.footer a {
-    color: #ffcc00;
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+}
+
+.footer-section h2,
+.footer-section h3 {
+    color: #e50914;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
     text-decoration: none;
-    margin: 0 10px;
+    color: white;
+    transition: color 0.3s ease;
 }
 
-.footer a:hover {
-    text-decoration: underline;
+.footer-section ul li a:hover {
+    color: #e50914;
 }
 
-.footer p {
-    margin: 0;
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #e50914;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #222;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #bbb;
 }
