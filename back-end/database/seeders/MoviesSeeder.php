@@ -17,7 +17,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 143,
                 'rating' => 8.0,
                 'genre_id' => 1, // Action
-                'image_path' => 'https://m.media-amazon.com/images/M/MV5BNGE0YTVjNzUtNzJjOS00NGNlLTgxMzctZTY4YTE1Y2Y1ZTU4XkEyXkFqcGc@._V1_.jpg',
+                'image_path' => 'https://gamebomb.ru/files/galleries/001/5/5d/408775.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -39,7 +39,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 148,
                 'rating' => 8.8,
                 'genre_id' => 3, // Sci-Fi
-                'image_path' => 'https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Inception_OST.jpg/220px-Inception_OST.jpg',
+                'image_path' => 'https://m.media-amazon.com/images/M/MV5BZGFjOTRiYjgtYjEzMS00ZjQ2LTkzY2YtOGQ0NDI2NTVjOGFmXkEyXkFqcGdeQXVyNDQ5MDYzMTk@._V1_FMjpg_UX1000_.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -50,7 +50,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 169,
                 'rating' => 8.6,
                 'genre_id' => 3, // Sci-Fi
-                'image_path' => 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg',
+                'image_path' => 'https://i.pinimg.com/originals/8e/0d/ab/8e0dab8699be85720ce55845065bf6dc.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -61,7 +61,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 112,
                 'rating' => 7.5,
                 'genre_id' => 5, // Horror
-                'image_path' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo1w35AsAv2sISXApGQxf8hD_gO4d_A_ZC3Q&s',
+                'image_path' => 'https://interviewerpr.com/wp-content/uploads/2021/08/The-Conjuring-1365x2048.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -72,7 +72,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 123,
                 'rating' => 7.8,
                 'genre_id' => 6, // Romance
-                'image_path' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIbRhjbusenFKi8EmGn0rXe7nB168MA4GOCw&s',
+                'image_path' => 'https://m.media-amazon.com/images/M/MV5BNzk0NGU5ZWYtZTI5Ni00NTcwLWJjMzAtN2JmZTA5YTA1YTVlXkEyXkFqcGdeQXVyMzk3NDU4NTU@._V1_FMjpg_UX1000_.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -83,7 +83,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 152,
                 'rating' => 7.6,
                 'genre_id' => 7, // Fantasy
-                'image_path' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfILbk8qd5KHYWXTX1H7BhdKkmraxPIjINbA&s',
+                'image_path' => "http://vignette2.wikia.nocookie.net/the-collectors/images/0/0c/Harry_Potter_and_the_Philosopher's_Stone_DVD.jpg/revision/latest?cb=20121019141743",
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -94,7 +94,7 @@ class MoviesSeeder extends Seeder
                 'duration' => 136,
                 'rating' => 8.7,
                 'genre_id' => 2, // Sci-Fi
-                'image_path' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfSjSWOCaw5dnDL2GT1zFd9RMCgUGw5Q2Cfg&s',
+                'image_path' => 'https://www.themoviedb.org/t/p/original/8QdTKWQtcHXal7UR1V8FWCo5jqp.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
