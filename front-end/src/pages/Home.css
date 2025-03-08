@@ -3,7 +3,6 @@
 body {
     font-family: "Jost", sans-serif;
     background-image: url(/src/images/background.jpg);
-    height: 100vh;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -31,7 +30,6 @@ body::before {
     font-size: 1.5rem;
     font-weight: 700;
     color: white;
-    margin-bottom: 10px;
     width: fit-content;
     padding-right: 5px;
     border-right: 3px solid white; /* Simulates a blinking cursor */
@@ -132,4 +130,8 @@ body::before {
 .slider-nav a:hover,
 .slider-nav a.active {
     opacity: 1;
+}
+
+section{
+    height: 100vh;
 }

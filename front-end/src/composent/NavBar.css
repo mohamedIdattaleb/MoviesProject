@@ -105,7 +105,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
+    gap: 5px;
+    width: 35%;
 }
 .links a {
     text-decoration: none;

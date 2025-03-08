@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import NavBar from "../composent/NavBar";
+import Foter from "../composent/Foter";
 import "./Home.css";
 import axios from "axios";
+
 
 function Home() {
     const [name, setName] = useState("");
@@ -99,7 +101,10 @@ function Home() {
                         </div>
                     </div>
                 </section>
+                <section></section>
+                <Foter />
             </main>
+            
         </div>
     );
 }
