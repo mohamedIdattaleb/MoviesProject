@@ -4,7 +4,8 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Fond fixe */
+    background-attachment: fixed;
+    /* Fond fixe */
     backdrop-filter: blur(1px);
     position: relative;
 }
@@ -45,117 +46,94 @@ body::before {
 }
 
 /* Slider principal */
-.slider-container {
+.slider {
     position: relative;
-    width: 100%;
-    height: 500px;
-    margin: 20px auto;
+    max-width: 800px;
+    height: fit-content;
+    margin: 0 auto;
     overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.slider-image-container {
-    width: 100%;
-    height: 100%;
+/* Images should be the same size */
+.sliders {
+    display: flex;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    border-radius: 15px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.sliders::-webkit-scrollbar {
+    display: none;
+}
+
+.sliders div {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
     position: relative;
 }
 
-.slider-image {
+/* Image Styling */
+.sliders img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
     border-radius: 15px;
 }
 
-.slider-content {
+/* Title Overlay */
+.sliders .title {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: white;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 50%;
-}
-
-.slider-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.slider-description {
-    font-size: 1rem;
-    margin-bottom: 20px;
-}
-
-.slider-watch-btn {
-    padding: 10px 20px;
-    background-color: #e50914;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.slider-watch-btn:hover {
-    background-color: #f40612;
-}
-
-/* Boutons de navigation */
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 2rem;
-    padding: 10px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.slider-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
-/* Indicateurs de pagination */
-.slider-dots {
-    position: absolute;
-    bottom: 10px;
+    bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-.slider-dots span {
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.5;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+.sliders .watch {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: rgba(255, 0, 0, 0.856);
+    border: none;
+    border-radius: 5px 10px;
+    color: #fff;
+    font-family: "Jost", sans-serif;
+    transition: all ease 0.5s;
     cursor: pointer;
 }
 
-.slider-dots span.active {
-    opacity: 1;
-    transform: scale(1.2);
+.sliders .watch:hover {
+    background-color: red;
 }
+
+/* Slider Navigation */
+.slider-nav {
+    display: flex;
+    column-gap: 0.5rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1;
+}
+
+.slider-nav a {
+    width: 0.50rem;
+    height: 0.50rem;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.75;
+    transition: opacity ease 250ms;
+}
+
 
 /* Grille des films */
 .movie-grid {
@@ -222,4 +200,7 @@ body::before {
 .slider-nav a:hover,
 .slider-nav a.active {
     opacity: 1;
+}
+.slider-nav a.active{
+    background-color: #f40612;
 }
