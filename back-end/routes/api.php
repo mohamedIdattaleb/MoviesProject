@@ -25,6 +25,8 @@ Route::prefix('v1')->group(function () {
     Route::get('movies', [MoviesController::class, 'index']);
     Route::get('series', [SeriesController::class, 'index']);
     Route::get('genres', [GenresController::class, 'index']);
+    Route::get('movies/{id}', [MoviesController::class, 'show']);
+    Route::get('series/{id}', [SeriesController::class, 'show']);
     Route::post('register', [UsersController::class, 'register']);
     Route::post('login', [UsersController::class, 'login']);
 });

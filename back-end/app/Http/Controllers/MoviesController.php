@@ -13,7 +13,7 @@ class MoviesController extends Controller
     public function index()
     {
         // Retrieve all Moviess with pagination
-        $Moviess = Movies::paginate(10);
+        $Moviess = Movies::all();
         return response()->json($Moviess);
     }
 
