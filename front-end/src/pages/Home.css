@@ -4,9 +4,13 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Fond fixe */
+    background-attachment: fixed;
     backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    /* Compatibilité Safari */
     position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 body::before {
@@ -44,8 +48,8 @@ body::before {
     }
 }
 
-/* Slider principal */
-.slider-container {
+/* SLIDER PRINCIPAL */
+.slider {
     position: relative;
     width: 100%;
     height: 500px;
@@ -55,59 +59,33 @@ body::before {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.slider-image-container {
+.slider .slide {
     width: 100%;
     height: 100%;
-    position: relative;
+    transition: opacity 0.6s ease-in-out;
 }
 
-.slider-image {
+.slider img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
     border-radius: 15px;
 }
 
-.slider-content {
+.slider .title {
     position: absolute;
     bottom: 20px;
     left: 20px;
     color: white;
     background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    max-width: 50%;
-}
-
-.slider-title {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 10px;
 }
 
-.slider-description {
-    font-size: 1rem;
-    margin-bottom: 20px;
-}
-
-.slider-watch-btn {
-    padding: 10px 20px;
-    background-color: #e50914;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.slider-watch-btn:hover {
-    background-color: #f40612;
-}
-
-/* Boutons de navigation */
-.slider-btn {
+/* BOUTONS DE NAVIGATION */
+.slider button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -118,9 +96,10 @@ body::before {
     padding: 10px;
     cursor: pointer;
     transition: background 0.3s ease;
+    border-radius: 50%;
 }
 
-.slider-btn:hover {
+.slider button:hover {
     background: rgba(0, 0, 0, 0.8);
 }
 
@@ -132,8 +111,8 @@ body::before {
     right: 10px;
 }
 
-/* Indicateurs de pagination */
-.slider-dots {
+/* INDICATEURS */
+.slider-nav {
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -142,7 +121,7 @@ body::before {
     gap: 5px;
 }
 
-.slider-dots span {
+.slider-nav span {
     width: 12px;
     height: 12px;
     background: white;
@@ -152,12 +131,12 @@ body::before {
     cursor: pointer;
 }
 
-.slider-dots span.active {
+.slider-nav span.active {
     opacity: 1;
     transform: scale(1.2);
 }
 
-/* Grille des films */
+/* GRILLE DES FILMS */
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -171,6 +150,8 @@ body::before {
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 2/3;
+    /* Garde une taille uniforme */
 }
 
 .movie-card:hover {
@@ -180,14 +161,14 @@ body::before {
 
 .movie-card img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     border-radius: 10px;
 }
 
 .movie-card .title {
     position: absolute;
-    bottom: 10px;
+    bottom: 39.5px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.2rem;
@@ -197,12 +178,11 @@ body::before {
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     text-align: center;
-    border-radius: 0 0 10px 10px;
 }
 
 .movie-card .watch-btn {
     position: absolute;
-    bottom: 5px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
@@ -217,9 +197,4 @@ body::before {
 
 .movie-card .watch-btn:hover {
     background-color: #f40612;
-}
-
-.slider-nav a:hover,
-.slider-nav a.active {
-    opacity: 1;
 }

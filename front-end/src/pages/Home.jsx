@@ -2,11 +2,33 @@ import { useState, useEffect, useCallback } from "react";
 import NavBar from "../composent/NavBar";
 import Footer from "../composent/Foter";
 import axios from "axios";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import "./Home.css";
 
 const API_URL = "http://localhost:8000/api/v1/movies";
-const SLIDER_INTERVAL = 5000; // Intervalle de 5 secondes
+
+const sliderMovies = [
+    {
+        title: "Harry Potter",
+        image: "https://miro.medium.com/v2/resize:fit:1400/1*-xxH5kXE8AGA8-vzPURslg.jpeg",
+    },
+    {
+        title: "The Matrix",
+        image: "https://townsquare.media/site/442/files/2018/05/the-matrix-reloaded.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89&format=natural",
+    },
+    {
+        title: "Interstellar",
+        image: "https://static1.moviewebimages.com/wordpress/wp-content/uploads/2024/07/cooper-stares-into-the-void-of-space-in-interstellar.jpg",
+    },
+    {
+        title: "The Hangover",
+        image: "https://images.bauerhosting.com/legacy/empire-tmdb/films/18785/images/39LohvXfll5dGCQIV9B9VJ16ImE.jpg?ar=16%3A9&fit=crop&crop=top&auto=format&w=1440&q=80",
+    },
+    {
+        title: "The Conjuring",
+        image: "https://www.nme.com/wp-content/uploads/2019/04/PMBD9E-scaled.jpg",
+    },
+];
 
 function Home() {
     const [name, setName] = useState("");
@@ -14,7 +36,6 @@ function Home() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false); // Pour arrêter l'autoplay au survol
 
     useEffect(() => {
         document.title = "Home";
@@ -38,29 +59,14 @@ function Home() {
         fetchMovies();
     }, [fetchMovies]);
 
-    // Changement automatique d'image toutes les 5 secondes
-    useEffect(() => {
-        if (movies.length === 0 || isHovered) return;
-
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
-        }, SLIDER_INTERVAL);
-
-        return () => clearInterval(interval);
-    }, [movies, isHovered]);
-
-    // Fonctions de navigation manuelle
+    // Navigation manuelle du slider
     const goToPrevious = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? movies.length - 1 : prevIndex - 1));
+        setCurrentIndex((prevIndex) => (prevIndex === 0 ? sliderMovies.length - 1 : prevIndex - 1));
     };
 
     const goToNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % sliderMovies.length);
     };
-
-    // Gestion du survol
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
 
     if (loading) return <p className="loading">Chargement des films...</p>;
     if (error) return <p className="error">{error}</p>;
@@ -68,54 +74,40 @@ function Home() {
     return (
         <div className="container">
             <NavBar />
-            <h1 className="hello">Hello, {name}</h1>
+            <h1 className="hello">Welcome {name}</h1>
 
-            {/* Slider principal */}
-            <div 
-                className="slider-container"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={movies[currentIndex].id}
-                        className="slider-image-container"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 1 }}
-                    >
-                        <img 
-                            src={movies[currentIndex].image_path} 
-                            alt={movies[currentIndex].title} 
-                            className="slider-image"
-                        />
-                        <div className="slider-content">
-                            <h2 className="slider-title">{movies[currentIndex].title}</h2>
-                            <p className="slider-description">{movies[currentIndex].description}</p>
-                            <button className="slider-watch-btn">Watch Now</button>
-                        </div>
-                    </motion.div>
-                </AnimatePresence>
+            {/* Slider principal (manuel) */}
+            <div className="slider">
+                <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.8 }}
+                    className="slide"
+                >
+                    <img src={sliderMovies[currentIndex].image} alt={sliderMovies[currentIndex].title} />
+                    <h1 className="title">{sliderMovies[currentIndex].title}</h1>
+                    <button className="watch">Watch</button>
+                </motion.div>
 
                 {/* Boutons de navigation */}
-                <button className="slider-btn prev" onClick={goToPrevious} aria-label="Précédent">❮</button>
-                <button className="slider-btn next" onClick={goToNext} aria-label="Suivant">❯</button>
+                <button className="prev" onClick={goToPrevious}>‹</button>
+                <button className="next" onClick={goToNext}>›</button>
 
-                {/* Indicateurs de pagination */}
-                <div className="slider-dots">
-                    {movies.map((_, index) => (
-                        <span 
-                            key={index} 
+                {/* Indicateurs de position */}
+                <div className="slider-nav">
+                    {sliderMovies.map((_, index) => (
+                        <span
+                            key={index}
                             className={index === currentIndex ? "active" : ""}
                             onClick={() => setCurrentIndex(index)}
-                            aria-label={`Aller à l'image ${index + 1}`}
                         ></span>
                     ))}
                 </div>
             </div>
 
-            {/* Liste des films */}
+            {/* Liste des films depuis l'API */}
             <div className="movie-grid">
                 {movies.map((movie, index) => (
                     <motion.div key={index} className="movie-card" whileHover={{ scale: 1.05 }}>
@@ -125,6 +117,7 @@ function Home() {
                     </motion.div>
                 ))}
             </div>
+
             <Footer />
         </div>
     );
