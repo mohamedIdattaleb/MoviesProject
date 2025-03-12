@@ -6,10 +6,12 @@ import { motion } from "framer-motion";
 import "./Home.css";
 
 const API_URL = "http://localhost:8000/api/v1/movies";
+const API_URL2 = "http://localhost:8000/api/v1/series";
 
 function Home() {
     const [name, setName] = useState("");
     const [movies, setMovies] = useState([]);
+    const [series, setSeries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -25,8 +27,10 @@ function Home() {
     const fetchMovies = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await axios.get(API_URL);
-            setMovies(response.data.data);
+            const Movie = await axios.get(API_URL);
+            setMovies(Movie.data);
+            console.log(Movie.data);
+            
         } catch (err) {
             setError("Une erreur est survenue lors du chargement des films.");
         } finally {
@@ -38,14 +42,33 @@ function Home() {
         fetchMovies();
     }, [fetchMovies]);
 
-    // Automatic slide change every 5 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveIndex(prevIndex => (prevIndex + 1) % 5); // Loops back after last slide
-        }, 8000);
-
-        return () => clearInterval(interval);
+    const fetchSeries = useCallback(async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get(API_URL2);
+            setSeries(response.data || []); // Ensure series is always an array
+            console.log("Series API Response:", response.data);
+        } catch (err) {
+            setError("Une erreur est survenue lors du chargement des séries.");
+            setSeries([]); // Fallback to empty array on error
+        } finally {
+            setLoading(false);
+        }
     }, []);
+    
+
+    useEffect(() => {
+        fetchSeries();
+    }, [fetchSeries]);
+
+    // // Automatic slide change every 8 seconds
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setActiveIndex(prevIndex => (prevIndex + 1) % 5); // Loops back after last slide
+    //     }, 8000);
+
+    //     return () => clearInterval(interval);
+    // }, []);
     useEffect(() => {
         const slides = sliderRef.current?.children;
         if (slides) {
@@ -107,7 +130,9 @@ function Home() {
             </div>
 
             {/* Liste des films */}
+            <h2 className="h">List Of Movies</h2>
             <div className="movie-grid">
+                
                 {movies.map((movie, index) => (
                     <motion.div key={index} className="movie-card" whileHover={{ scale: 1.05 }}>
                         <img src={movie.image_path} alt={movie.title} />
@@ -116,8 +141,24 @@ function Home() {
                     </motion.div>
                 ))}
             </div>
+
+            {/* Siries */}
+            <h2 className="h">List Of Series</h2>
+            <div className="movie-grid">
+                
+                {series.map((serie, index) => (
+                    <motion.div key={index} className="movie-card" whileHover={{ scale: 1.05 }}>
+                        <img src={serie.image_path} alt={serie.title} />
+                        <div className="title">{serie.title}</div>
+                        <button className="watch-btn">Watch Now</button>
+                    </motion.div>
+                ))}
+            </div>
             <Footer />
         </div>
+
+        
+
     );
 }
 
