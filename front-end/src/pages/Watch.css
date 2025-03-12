@@ -1,0 +1,26 @@
+.watch-page {
+    padding: 20px;
+    text-align: center;
+    color: white;
+    background-color: #222;
+}
+
+.watch-page img {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.watch-page h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.watch-page p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
